@@ -37,6 +37,8 @@ After confirming the design will achieve 4kHz output, I used Altium Designer to 
 
 Image 2: Buzzer board schematic with the resistance value simulated in LTspice and 3V3 input and output both with B2B-XH-A 2-pin headers
 
+<p align="center"><img width="50%" alt="Buzzer Board" src="https://github.com/user-attachments/assets/671e69bc-77f5-41c9-bdb6-9b08769c611d" /></p>
+
 Image 3: Buzzer board PCB layout viewed from top layer with components from schematic and I/O ports labeled
 
 --Specific Design Considerations--
@@ -46,11 +48,17 @@ Image 3: Buzzer board PCB layout viewed from top layer with components from sche
 
 Headlights requirements:
 - White
-- >600lm
+- greater than 600lm
 - <3A current to avoid overheating
-According to the datasheet, XMLBWT-00-0000-0000U3051 (P.4) can achieve 628 lumens at 1.5A and 798 lumens at 2A (XMLBWT-00-0000-0000U4051 is brighter, but it is only sold in 1000s on digikey)
-Therefore XMLBWT-00-0000-0000U3051 is chosen to be the headlights
-LED board coming soon...
+According to the datasheet, XMLBWT-00-0000-0000U3051 (P.4) can achieve 628 lumens at 1.5A and 798 lumens at 2A (XMLBWT-00-0000-0000U4051 is brighter, but it is only sold in 1000s on Digi-Key)
+Therefore, XMLBWT-00-0000-0000U3051 is chosen to be the headlights
+### Front LED Board
+--Specific Design Considerations--
+- heat dissipation via vias on the GND pad of the LED
+- aluminum PCB to maximize heat dissipation (as I am writing this, I realized I don't need heat dissipation vias as aluminum PCBs only have 1 layer, but I already ordered it)
+- GND plated through holes so that it can be connected to the bike frame
+<p align="center"><img width="50%" alt="Front LED board" src="https://github.com/user-attachments/assets/3b620ce6-f5ff-4b15-9047-c43bc5c4bf55" /></p>
+Image 4: Front LED board layout with design considerations in mind
 
 Tail Light
 
