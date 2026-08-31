@@ -52,13 +52,13 @@ Headlights requirements:
 - <3A current to avoid overheating
 According to the datasheet, [XMLBWT-00-0000-0000U3051](https://downloads.cree-led.com/files/ds/x/XLamp-XML2.pdf) (P.4) can achieve 628 lumens at 1.5A and 798 lumens at 2A (XMLBWT-00-0000-0000U4051 is brighter, but it is only sold in 1000s on Digi-Key)
 Therefore, XMLBWT-00-0000-0000U3051 is chosen to be the headlights
-### Front LED Board
+### Headlight Board
 --Specific Design Considerations--
 - heat dissipation via vias on the GND pad of the LED
 - aluminum PCB to maximize heat dissipation (as I am writing this, I realized I don't need heat dissipation vias as aluminum PCBs only have 1 layer, but I already ordered it)
 - GND plated through holes so that it can be connected to the bike frame
 <p align="center"><img width="50%" alt="Front LED board" src="https://github.com/user-attachments/assets/3b620ce6-f5ff-4b15-9047-c43bc5c4bf55" /></p>
-Image 4: Front LED board layout with design considerations in mind
+Image 4: Headlight board layout with design considerations in mind
 
 ## Tail Light
 
