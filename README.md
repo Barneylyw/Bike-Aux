@@ -1,7 +1,9 @@
+
 Bike Auxiliary System
 
- To power a buzzer, head lights, and tail lights with one (or more) rechargeable Li-ion battery.
-
+To power a buzzer, head lights, and tail lights with one (or more) rechargeable Li-ion battery.
+ 
+<img width="1200" height="900" alt="bike aux" src="https://github.com/user-attachments/assets/766c6112-1625-423f-9183-f2460c320e6b" />
 Diagram 1: Rough image visualization of how the system will behave
 Where the buzzer will act as a bell which will be activated by a button. The head lights and tail lights will be activated with one switch.
 
