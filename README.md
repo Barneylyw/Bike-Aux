@@ -44,11 +44,11 @@ Image 3: Buzzer board PCB layout viewed from top layer with components from sche
 --Specific Design Considerations--
 - N/A
 
-## Head Light
+## Headlight
 
-Headlights requirements:
+Headlight requirements:
 - White
-- greater than 600lm
+- greater than 600lm (similar to an off-the-sheleve part)
 - <3A current to avoid overheating
 According to the datasheet, [XMLBWT-00-0000-0000U3051](https://downloads.cree-led.com/files/ds/x/XLamp-XML2.pdf) (P.4) can achieve 628 lumens at 1.5A and 798 lumens at 2A (XMLBWT-00-0000-0000U4051 is brighter, but it is only sold in 1000s on Digi-Key)
 Therefore, XMLBWT-00-0000-0000U3051 is chosen to be the headlights
@@ -60,12 +60,13 @@ Therefore, XMLBWT-00-0000-0000U3051 is chosen to be the headlights
 <p align="center"><img width="50%" alt="Front LED board" src="https://github.com/user-attachments/assets/3b620ce6-f5ff-4b15-9047-c43bc5c4bf55" /></p>
 Image 4: Headlight board layout with design considerations in mind
 
-## Tail Light
+## Taillight
 
-Coming soon...
-Power Distribution Sub-system
+Taillight requirements:
+- Red
+- 100lm (similar to an off-the-sheleve part)
 
-Problem: Li-ion Batteries varies from 2.8V - 4.2V and the LEDs need constant current
-Solution: Supply constant voltage and constant current via DC-DC converters and LED drivers
+## Power Distribution
+
 
 More updates coming soon... 
