@@ -57,6 +57,7 @@ Therefore, XMLBWT-00-0000-0000U3051 is chosen to be the headlights
 - heat dissipation via vias on the GND pad of the LED
 - aluminum PCB to maximize heat dissipation (as I am writing this, I realized I don't need heat dissipation vias as aluminum PCBs only have 1 layer, but I already ordered it)
 - GND plated through holes so that it can be connected to the bike frame
+- power port
 <p align="center"><img width="50%" alt="Front LED board" src="https://github.com/user-attachments/assets/3b620ce6-f5ff-4b15-9047-c43bc5c4bf55" /></p>
 Image 4: Headlight board layout with design considerations in mind
 
@@ -65,8 +66,21 @@ Image 4: Headlight board layout with design considerations in mind
 Taillight requirements:
 - Red
 - 100lm (similar to an off-the-sheleve part)
+I chose [JE2835AHR-N-0001A0000-N0000001](https://downloads.cree-led.com/files/ds/j/JSeries-2835-Color.pdf), thinking it was a red light with 130lm, but I didn't notice it refers to radiant flux instead of luminous flux.
+This will not work as intended with my current setup; I will integrate and test everything before changing the taillight setup.
+### Taillight Board
+--Specific Design Considerations--
+- N/A
+- power port
+- mounting holes
+<p align="center"><img width="50%" alt="Rear LED board" src="https://github.com/user-attachments/assets/a719d024-1bb3-4ebb-bb28-f6b6378dc71d" /></p>
+Image 5: Taillight board layout with a power port and mounting holes
 
-## Power Distribution
+## Power Distribution Board
+This might be the most complex system in this project... many things can (and probably will) go wrong here...
+<p align="center"><img width="50%" alt="PDB" src="https://github.com/user-attachments/assets/2775d804-fbe9-40b7-a745-857b54bb4ca7" /></p>
+Image 6: rough visualization of what the power distribution board consists of, blue arrows indicates power input/output ports
 
 
-More updates coming soon... 
+## Charger
+Board holders and mechanical integration coming soon... 
