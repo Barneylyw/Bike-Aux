@@ -100,8 +100,9 @@ I input my requirements into TI's Webench tool and it returned TPS61089 with thi
 Image 8: how TPS61089 should be configured according to Webench
 
 I then copied it to my schematic document in Altium
-<p align="center"><img width="50%" alt="VR from Altium" src="https://github.com/user-attachments/assets/64ee927e-ac1e-4780-a916-16af5bc1abba" /></p>
-image 9: my schematic of TPS61089 without some of the input capacitor
+<p align="center"><img width="50%" alt="VR in Altium" src="https://github.com/user-attachments/assets/88727eeb-1d1d-4f12-ae2c-954ea3767128" />
+</p>
+image 9: my schematic of TPS61089 without some of the input capacitors
 
 ### Front LED (Headlight) driver
 Front LED driver requirements:
@@ -110,8 +111,12 @@ Front LED driver requirements:
 [LED2000](https://www.st.com/content/ccc/resource/technical/document/datasheet/0f/92/f3/d6/fb/2e/49/ef/DM00060040.pdf/files/DM00060040.pdf/jcr:content/translations/en.DM00060040.pdf) is able to supply 2A and 3.5V with this configuration according ST's eDesignSuite, so I copied it to my schematic document in Altium
 <p align="center"><img width="50%" alt="Front driver in Altium" src="https://github.com/user-attachments/assets/99b18fa2-6722-4579-9160-2bd0162dc3ef" /></p>
 Image 10: how LED2000 should be configured according to eDesignSuite
+<p align="center"><img width="50%" alt="image" src="https://github.com/user-attachments/assets/f54594e3-7554-4be3-9c47-6388247863ac" /></p>
+image 11: my schematic of LED2000
 
+### 1 Hz oscillator
+The original plan was to either use a 555timer or dividing a crystal signal, but then i found the [SIT1534AC-J5-DCC-00.001E](https://www.digikey.ca/en/products/detail/sitime/SIT1534AC-J5-DCC-00-001E/7793956) can produce a 1 Hz signal, so I opted for the easy solution as this is not the focus of this project and I don't need the timer to be 100% accurate, just ~1 Hz
 
-
+the footprint I downloaded from Ultra Librarian doesn't specificify which pin is which while the symbol does, so I took a guess in the layout, so it might not work as intended(i.e. the back light won't blink)
 ## Charger
 Board holders and mechanical integration coming soon... 
