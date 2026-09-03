@@ -76,10 +76,41 @@ This will not work as intended with my current setup; I will integrate and test 
 <p align="center"><img width="50%" alt="Rear LED board" src="https://github.com/user-attachments/assets/a719d024-1bb3-4ebb-bb28-f6b6378dc71d" /></p>
 Image 5: Taillight board layout with a power port and mounting holes
 
+## BMS (used in both Power Distribution Board and Charger Board)
+BMS requirements:
+- OVP: 4.2V
+- UVP: 2.8V
+[BQ297xx](https://www.ti.com/lit/ds/symlink/bq2972.pdf) family is chosen for its small BOM size and low shutdown current, I chose BQ29737 because it is the closest one that matches my requirements
+following their design procedure with max load discharge current = 5A (headroom from 4A) 20mΩ is needed across both FET and V_gs=3.5, so CSD16406Q3 is likely going to work as the charging and discharging FETs
+
+following the Typical Application from the datasheet, I created the schematic for BMS
+<p align="center"><img width="50%" alt="image" src="https://github.com/user-attachments/assets/f174c445-50bc-4645-91af-d2046e05c874" /></p>
+Image 6: schematic of BMS system with BQ29737DSER as the BMS IC and CSD16406Q3 as the external charging and discharging FETs as the typical application have instructed
+
 ## Power Distribution Board
 This might be the most complex system in this project... many things can (and probably will) go wrong here...
 <p align="center"><img width="50%" alt="PDB" src="https://github.com/user-attachments/assets/2775d804-fbe9-40b7-a745-857b54bb4ca7" /></p>
-Image 6: rough visualization of what the power distribution board consists of, blue arrows indicates power input/output ports
+Image 7: rough visualization of what the power distribution board consists of, blue arrows indicates power input/output ports
+
+### Voltage Regulator
+Voltage regulator requirement:
+- be able to supply 5V with 4A max
+I input my requirements into TI's Webench tool and it returned TPS61089 with this configuration is able to reach 5V 4A max
+<p align="center"><img width="50%" alt="TPS61089RNRR 5V4A" src="https://github.com/user-attachments/assets/eb53ff0f-be8e-4a7d-8cbf-de164c09f408" /></p>
+Image 8: how TPS61089 should be configured according to Webench
+
+I then copied it to my schematic document in Altium
+<p align="center"><img width="50%" alt="VR from Altium" src="https://github.com/user-attachments/assets/64ee927e-ac1e-4780-a916-16af5bc1abba" /></p>
+image 9: my schematic of TPS61089 without some of the input capacitor
+
+### Front LED (Headlight) driver
+Front LED driver requirements:
+- be able to supply 2A, 3.5V(V_fled)
+- easy to use
+[LED2000](https://www.st.com/content/ccc/resource/technical/document/datasheet/0f/92/f3/d6/fb/2e/49/ef/DM00060040.pdf/files/DM00060040.pdf/jcr:content/translations/en.DM00060040.pdf) is able to supply 2A and 3.5V with this configuration according ST's eDesignSuite, so I copied it to my schematic document in Altium
+<p align="center"><img width="50%" alt="Front driver in Altium" src="https://github.com/user-attachments/assets/99b18fa2-6722-4579-9160-2bd0162dc3ef" /></p>
+Image 10: how LED2000 should be configured according to eDesignSuite
+
 
 
 ## Charger
