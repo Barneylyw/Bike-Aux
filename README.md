@@ -80,6 +80,8 @@ Image 5: Taillight board layout with a power port and mounting holes
 BMS requirements:
 - OVP: 4.2V
 - UVP: 2.8V
+
+
 [BQ297xx](https://www.ti.com/lit/ds/symlink/bq2972.pdf) family is chosen for its small BOM size and low shutdown current, I chose BQ29737 because it is the closest one that matches my requirements
 following their design procedure with max load discharge current = 5A (headroom from 4A) 20mΩ is needed across both FET and V_gs=3.5, so CSD16406Q3 is likely going to work as the charging and discharging FETs
 
