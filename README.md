@@ -125,6 +125,8 @@ Rear LED driver requirements:
 - consist of an enable pin
 - 5V input
 - easy to use
+
+
 I was debating between [NCP3066](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1149/NCP%2CNCV3066.pdf) and [Pam2804](https://www.diodes.com/assets/Datasheets/PAM2804.pdf)
 <table>
   <tr>
