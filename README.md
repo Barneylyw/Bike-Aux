@@ -117,6 +117,42 @@ image 11: my schematic of LED2000
 ### 1 Hz oscillator
 The original plan was to either use a 555timer or dividing a crystal signal, but then i found the [SIT1534AC-J5-DCC-00.001E](https://www.digikey.ca/en/products/detail/sitime/SIT1534AC-J5-DCC-00-001E/7793956) can produce a 1 Hz signal, so I opted for the easy solution as this is not the focus of this project and I don't need the timer to be 100% accurate, just ~1 Hz
 
-the footprint I downloaded from Ultra Librarian doesn't specificify which pin is which while the symbol does, so I took a guess in the layout, so it might not work as intended(i.e. the back light won't blink)
+The footprint I downloaded from Ultra Librarian doesn't specificify which pin is which while the symbol does, so I guessed the layout, so it might not work as intended(i.e. the taillight won't blink)
+
+### Rear LED (taillight) driver
+Rear LED driver requirements:
+- able to supply >250mA
+- consist of an enable pin
+- 5V input
+- easy to use
+I was debating between [NCP3066](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/1149/NCP%2CNCV3066.pdf) and [Pam2804](https://www.diodes.com/assets/Datasheets/PAM2804.pdf)
+<table>
+  <tr>
+    <th></th>
+    <th>NCP3066</th>
+    <th>PAM2804</th>
+  </tr>
+  <tr>
+    <td>Max current supply</td>
+    <td>1.5A</td>
+    <td>1A</td>
+  </tr>
+  <tr>
+    <td>External parts</td>
+    <td>7</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>Input voltage</td>
+    <td>0-42V</td>
+    <td>2.5-6V</td>
+  </tr>  
+  <tr>
+   <td>How to determine components</td>
+   <td>9 equations</td>
+   <td>I_led = 0.1/Rs</td>
+  </tr>
+</table>
+Table 1: a table I made for myself to compare which one is the better option, both matches the requirements, but PAM2804 is easier to use, therefore PAM2804 is chosen as the rear led driver
 ## Charger
 Board holders and mechanical integration coming soon... 
