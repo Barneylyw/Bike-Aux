@@ -109,9 +109,9 @@ Front LED driver requirements:
 - be able to supply 2A, 3.5V(V_fled)
 - easy to use
 [LED2000](https://www.st.com/content/ccc/resource/technical/document/datasheet/0f/92/f3/d6/fb/2e/49/ef/DM00060040.pdf/files/DM00060040.pdf/jcr:content/translations/en.DM00060040.pdf) is able to supply 2A and 3.5V with this configuration according ST's eDesignSuite, so I copied it to my schematic document in Altium
-<p align="center"><img width="50%" alt="Front driver in Altium" src="https://github.com/user-attachments/assets/99b18fa2-6722-4579-9160-2bd0162dc3ef" /></p>
+<p align="center"><img width="50%" alt="Front driver config according to ST" src="https://github.com/user-attachments/assets/99b18fa2-6722-4579-9160-2bd0162dc3ef" /></p>
 Image 10: how LED2000 should be configured according to eDesignSuite
-<p align="center"><img width="50%" alt="image" src="https://github.com/user-attachments/assets/f54594e3-7554-4be3-9c47-6388247863ac" /></p>
+<p align="center"><img width="50%" alt="Front driver in Altium" src="https://github.com/user-attachments/assets/f54594e3-7554-4be3-9c47-6388247863ac" /></p>
 image 11: my schematic of LED2000
 
 ### 1 Hz oscillator
@@ -154,5 +154,10 @@ I was debating between [NCP3066](https://mm.digikey.com/Volume0/opasdata/d220001
   </tr>
 </table>
 Table 1: a table I made for myself to compare which one is the better option, both matches the requirements, but PAM2804 is easier to use, therefore PAM2804 is chosen as the rear led driver
+
+To determine Rs, I used the provided equation : I_led = 0.25A = 0.1/Rs -> 0.4Ω and created the schematic accordingly
+<p align="center"><img width="50%" alt="Rear LED driver in Altium" src="https://github.com/user-attachments/assets/dde34d7a-1c5f-4211-b2c2-166e8cd96fb7" /></p>
+Image 12: schematic of the rear led driver with R9 = 0.4Ω to set the I_led = 0.25A
+
 ## Charger
 Board holders and mechanical integration coming soon... 
