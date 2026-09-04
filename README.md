@@ -159,5 +159,46 @@ To determine Rs, I used the provided equation : I_led = 0.25A = 0.1/Rs -> 0.4Ω 
 <p align="center"><img width="50%" alt="Rear LED driver in Altium" src="https://github.com/user-attachments/assets/dde34d7a-1c5f-4211-b2c2-166e8cd96fb7" /></p>
 Image 12: schematic of the rear led driver with R9 = 0.4Ω to set the I_led = 0.25A
 
+### Board layout
+requirements for TPS61089:
+- Minimize length and area connected to SW pin
+- Capacitors should be as close to their respectful pins as possible
+- Vout path should be as short as possible
+- Current carrying paths should be wider
+requirements for LED2000:
+- FB connections be far from high current paths
+- FB -> R_sense path be as short as possible
+- 2 GND plans connected at Cout (C6 in my schematic)
+-  - Signal GND: AGND(Pin6), R3, C7
+   - PWR GND: Cout(C6), Cin(C3), GND(Pin7), PWR GND(Pin2)
+Personal requirements:
+- section by section so that it's easier to separate parts
+- test points (at Vin,Vout,CLK_out,I_fled,I_rled)
+- smaller than 10cm x 5cm
+
+to determine the trace width, I used the [digikey trace width calculator](https://www.digikey.ca/en/resources/conversion-calculators/conversion-calculator-pcb-trace-width) to determine the width at different traces:
+<table style="width:100%; border-collapse: collapse; border: 1px solid #ddd;">
+  <tr style="background-color: #2196F3; color: white;">
+    <th style="border: 1px solid #ddd; padding: 12px;">Input Current</th>
+    <th style="border: 1px solid #ddd; padding: 12px;">External Trace Width</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 12px;">6A</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">3.55mm</td>
+  </tr>
+  <tr style="background-color: #f9f9f9;">
+    <td style="border: 1px solid #ddd; padding: 12px;">4A</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">2.03mm</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 12px;">2A</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">0.78mm</td>
+  </tr>
+  <tr style="background-color: #f9f9f9;">
+    <td style="border: 1px solid #ddd; padding: 12px;">0.25A</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">0.0444mm</td>
+  </tr>
+</table>
+
 ## Charger
 Board holders and mechanical integration coming soon... 
