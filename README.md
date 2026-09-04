@@ -174,31 +174,36 @@ requirements for LED2000:
 Personal requirements:
 - section by section so that it's easier to separate parts
 - test points (at Vin,Vout,CLK_out,I_fled,I_rled)
+- raw 3.7V input port for testing
 - smaller than 10cm x 5cm
 
-to determine the trace width, I used the [digikey trace width calculator](https://www.digikey.ca/en/resources/conversion-calculators/conversion-calculator-pcb-trace-width) to determine the width at different traces:
+to determine the trace width, I used the [digikey trace width calculator](https://www.digikey.ca/en/resources/conversion-calculators/conversion-calculator-pcb-trace-width) to determine the width at different traces while assuming 10C rise:
 <table style="width:100%; border-collapse: collapse; border: 1px solid #ddd;">
   <tr style="background-color: #2196F3; color: white;">
-    <th style="border: 1px solid #ddd; padding: 12px;">Input Current</th>
-    <th style="border: 1px solid #ddd; padding: 12px;">External Trace Width</th>
+    <th style="border: 1px solid #ddd; padding: 12px;">Input Current (A)</th>
+    <th style="border: 1px solid #ddd; padding: 12px;">External Trace Width (mm)</th>
   </tr>
   <tr>
-    <td style="border: 1px solid #ddd; padding: 12px;">6A</td>
-    <td style="border: 1px solid #ddd; padding: 12px;">3.55mm</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">6</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">3.55</td>
   </tr>
   <tr style="background-color: #f9f9f9;">
-    <td style="border: 1px solid #ddd; padding: 12px;">4A</td>
-    <td style="border: 1px solid #ddd; padding: 12px;">2.03mm</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">4</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">2.03</td>
   </tr>
   <tr>
-    <td style="border: 1px solid #ddd; padding: 12px;">2A</td>
-    <td style="border: 1px solid #ddd; padding: 12px;">0.78mm</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">2</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">0.78</td>
   </tr>
   <tr style="background-color: #f9f9f9;">
-    <td style="border: 1px solid #ddd; padding: 12px;">0.25A</td>
-    <td style="border: 1px solid #ddd; padding: 12px;">0.0444mm</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">0.25</td>
+    <td style="border: 1px solid #ddd; padding: 12px;">0.0444</td>
   </tr>
 </table>
+table 2: how wide should the trace be depending on the current with temperature rise = 10C, only external width matter since I am only designing a 2 layer PCB
+<p align="center"><img width="50%" alt="PDB" src="https://github.com/user-attachments/assets/a84dc339-ae24-42e3-88dc-4307fb76ea9f" /></p>
+image 13: final design of the PDB with all the design requirements followed as closely as possible. includes 1 input port, 3 output port, 1 test input port, mounting holes, and words to indicate what is what.
+
 
 ## Charger
 Board holders and mechanical integration coming soon... 
