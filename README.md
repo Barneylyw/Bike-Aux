@@ -10,6 +10,7 @@ Where the buzzer will act as a bell which will be activated by a button. The hea
 --Overall design Considerations--
 - as small as possible
 - minimize the number of re-order PCBs due to non-design related issues
+- ICs should be as cheap as possible
 
 (All blue texts are links to component datasheet)
 
@@ -209,5 +210,41 @@ table 2: how wide should the trace be depending on the current with temperature 
 image 13: final design of the PDB with all the design requirements followed as closely as possible. includes 1 input port, 3 output port, 1 test input port, mounting holes, and words to indicate what is what.
 
 
-## Charger
+## Charger Board
+Charger board requirements:
+- charger IC
+- BMS, as backup to stop charging (reuse the same system as before)
+- power input port
+Charger IC requirements:
+- 4.2V cutoff
+- simple to use
+- >=500mA charge current
+- protection agains't charging from cold
+- easy to add indicator/built in capabilities for them
+[BQ24040](https://www.ti.com/lit/ds/symlink/bq24040.pdf) is the smartest with the most protection out of my options of [Sl4056E](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8922/5399_SL4056E%20ESOP-8.pdf) and [MCP73811](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/22036b.pdf) and it also have `charging`  and `power good` indicators.
+
+I_charge is usually 0.2-0.5C (C = capacity of Li-ion battery)
+I_charge = 1A in my case
+
+I used the [BQ24040 Application Report](https://www.ti.com/lit/an/slua901/slua901.pdf?ts=1787425354239) as my guide to 1A fast charge design except with %_IOutFC = 10% = 100mA
+following the design procedure outlined:
+I_out-FC = 1A
+%_I-Out-FC=10%
+R_ISet = 540AΩ/1000mA = 540Ω (549Ω is the closest most abundantly available resistor)
+R_Pre-term = 200Ω/% * 1-% = 2kΩ
+
+I decided to use the C_out pin from BMS for a `complete charge` indicator alongside a FET and power from Vin
+
+knowing C_out will be pulled to 0.4-0.5V when full charge and V_in = 5V, V_gs = ~-4.5V, V_gs(th) from [Bss84AK](https://assets.nexperia.com/documents/data-sheet/BSS84AK.pdf) is - 1.6V > -4.5V, so it would work in theory. I also recreated the circuit in LTspice to verify that it works.
+
+<p align="center"><img width="50%"  alt="Charge indicator in LTspice" src="https://github.com/user-attachments/assets/bf8293fa-4b1c-4378-a0b5-a7824b5c4f81" /></p>
+image 14: full charge indicator verification in LTspice, showing the current leaving R2 = -1mA at 3.4V and -20mA at 0.4V, so it should work
+
+I then put everything into the schematic
+<p align="center"><img width="50%" alt="Charger schematic" src="https://github.com/user-attachments/assets/a79577b1-04dc-46a4-9313-9ddd959f550d" /></p>
+Image 15: charger schematic, showing both BQ24040, BQ29737, BSS84AK, and dual input options, barrel jack and USB micro
+
+<p align="center"><img width="50%" alt="Charger layout" src="https://github.com/user-attachments/assets/b3e4b6e0-11d6-4cef-83a3-665ef3ed3380" /></p>
+Image 16: charger board layout with the LEDs being all over the place 😅
+
 Board holders and mechanical integration coming soon... 
