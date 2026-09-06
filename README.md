@@ -247,4 +247,10 @@ Image 15: charger schematic, showing both BQ24040, BQ29737, BSS84AK, and dual in
 <p align="center"><img width="50%" alt="Charger layout" src="https://github.com/user-attachments/assets/b3e4b6e0-11d6-4cef-83a3-665ef3ed3380" /></p>
 Image 16: charger board layout with the LEDs being all over the place 😅
 
-Board holders and mechanical integration coming soon... 
+## PCB and parts
+They are ordered from JLCPCB, Digikey, and Mouser, what I ordered can be found in the `orders` folder
+
+## Current status
+Waiting for them to arrive; then I'll assemble them and test them
+
+Testing, board holders, and mechanical integration coming soon... 
