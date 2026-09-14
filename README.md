@@ -14,7 +14,7 @@ Where the buzzer will act as a bell which will be activated by a button. The hea
 
 (All blue texts are links to component datasheet)
 
-## Buzzer Sub-system
+### Buzzer Sub-system
 
 Problem: My standard bike bell cannot be rung with gloves in the winter
 Solution: Make a 'bell' that can be activated with a button
@@ -45,7 +45,7 @@ Image 3: Buzzer board PCB layout viewed from top layer with components from sche
 --Specific Design Considerations--
 - N/A
 
-## Headlight
+### Headlight
 
 Headlight requirements:
 - White
@@ -53,7 +53,7 @@ Headlight requirements:
 - <3A current to avoid overheating
 According to the datasheet, [XMLBWT-00-0000-0000U3051](https://downloads.cree-led.com/files/ds/x/XLamp-XML2.pdf) (P.4) can achieve 628 lumens at 1.5A and 798 lumens at 2A (XMLBWT-00-0000-0000U4051 is brighter, but it is only sold in 1000s on Digi-Key)
 Therefore, XMLBWT-00-0000-0000U3051 is chosen to be the headlights
-### Headlight Board
+###### Headlight Board
 --Specific Design Considerations--
 - heat dissipation via vias on the GND pad of the LED
 - aluminum PCB to maximize heat dissipation (as I am writing this, I realized I don't need heat dissipation vias as aluminum PCBs only have 1 layer, but I already ordered it)
@@ -62,7 +62,7 @@ Therefore, XMLBWT-00-0000-0000U3051 is chosen to be the headlights
 <p align="center"><img width="50%" alt="Front LED board" src="https://github.com/user-attachments/assets/3b620ce6-f5ff-4b15-9047-c43bc5c4bf55" /></p>
 Image 4: Headlight board layout with design considerations in mind
 
-## Taillight
+### Taillight
 
 Taillight requirements:
 - Red
@@ -70,14 +70,14 @@ Taillight requirements:
 
 I chose [JE2835AHR-N-0001A0000-N0000001](https://downloads.cree-led.com/files/ds/j/JSeries-2835-Color.pdf), thinking it was a red light with 130lm, but I didn't notice it refers to radiant flux instead of luminous flux.
 This will not work as intended with my current setup; I will integrate and test everything before changing the taillight setup.
-### Taillight Board
+###### Taillight Board
 --Specific Design Considerations--
 - power port
 - mounting holes
 <p align="center"><img width="50%" alt="Rear LED board" src="https://github.com/user-attachments/assets/a719d024-1bb3-4ebb-bb28-f6b6378dc71d" /></p>
 Image 5: Taillight board layout with a power port and mounting holes
 
-## BMS (used in both Power Distribution Board and Charger Board)
+### BMS (used in both Power Distribution Board and Charger Board)
 BMS requirements:
 - OVP: 4.2V
 - UVP: 2.8V
@@ -90,12 +90,12 @@ following the Typical Application from the datasheet, I created the schematic fo
 <p align="center"><img width="50%" alt="image" src="https://github.com/user-attachments/assets/f174c445-50bc-4645-91af-d2046e05c874" /></p>
 Image 6: schematic of BMS system with BQ29737DSER as the BMS IC and CSD16406Q3 as the external charging and discharging FETs as the typical application have instructed
 
-## Power Distribution Board
+### Power Distribution Board
 This might be the most complex system in this project... many things can (and probably will) go wrong here...
 <p align="center"><img width="50%" alt="PDB" src="https://github.com/user-attachments/assets/2775d804-fbe9-40b7-a745-857b54bb4ca7" /></p>
 Image 7: rough visualization of what the power distribution board consists of, blue arrows indicates power input/output ports
 
-### Voltage Regulator
+###### Voltage Regulator
 Voltage regulator requirement:
 - be able to supply 5V with 4A max
 I input my requirements into TI's Webench tool and it returned TPS61089 with this configuration is able to reach 5V 4A max
@@ -107,7 +107,7 @@ I then copied it to my schematic document in Altium
 </p>
 image 9: my schematic of TPS61089 without some of the input capacitors
 
-### Front LED (Headlight) driver
+###### Front LED (Headlight) driver
 Front LED driver requirements:
 - be able to supply 2A, 3.5V(V_fled)
 - easy to use
@@ -117,12 +117,12 @@ Image 10: how LED2000 should be configured according to eDesignSuite
 <p align="center"><img width="50%" alt="Front driver in Altium" src="https://github.com/user-attachments/assets/f54594e3-7554-4be3-9c47-6388247863ac" /></p>
 image 11: my schematic of LED2000
 
-### 1 Hz oscillator
+###### 1 Hz oscillator
 The original plan was to either use a 555timer or dividing a crystal signal, but then i found the [SIT1534AC-J5-DCC-00.001E](https://www.digikey.ca/en/products/detail/sitime/SIT1534AC-J5-DCC-00-001E/7793956) can produce a 1 Hz signal, so I opted for the easy solution as this is not the focus of this project and I don't need the timer to be 100% accurate, just ~1 Hz
 
 The footprint I downloaded from Ultra Librarian doesn't specificify which pin is which while the symbol does, so I guessed the layout, so it might not work as intended(i.e. the taillight won't blink)
 
-### Rear LED (taillight) driver
+###### Rear LED (taillight) driver
 Rear LED driver requirements:
 - able to supply >250mA
 - consist of an enable pin
@@ -164,7 +164,7 @@ To determine Rs, I used the provided equation : I_led = 0.25A = 0.1/Rs -> 0.4Ω 
 <p align="center"><img width="50%" alt="Rear LED driver in Altium" src="https://github.com/user-attachments/assets/dde34d7a-1c5f-4211-b2c2-166e8cd96fb7" /></p>
 Image 12: schematic of the rear led driver with R9 = 0.4Ω to set the I_led = 0.25A
 
-### Board layout
+###### Board layout
 requirements for TPS61089:
 - Minimize length and area connected to SW pin
 - Capacitors should be as close to their respectful pins as possible
@@ -210,7 +210,7 @@ table 2: how wide should the trace be depending on the current with temperature 
 image 13: final design of the PDB with all the design requirements followed as closely as possible. includes 1 input port, 3 output port, 1 test input port, mounting holes, and words to indicate what is what.
 
 
-## Charger Board
+### Charger Board
 Charger board requirements:
 - charger IC
 - BMS, as backup to stop charging (reuse the same system as before)
@@ -247,10 +247,17 @@ Image 15: charger schematic, showing both BQ24040, BQ29737, BSS84AK, and dual in
 <p align="center"><img width="50%" alt="Charger layout" src="https://github.com/user-attachments/assets/b3e4b6e0-11d6-4cef-83a3-665ef3ed3380" /></p>
 Image 16: charger board layout with the LEDs being all over the place 😅
 
-## PCB and parts
-They are ordered from JLCPCB, Digikey, and Mouser, what I ordered can be found in the `orders` folder
+### PCB and parts
+They are ordered from JLCPCB, Digikey, and Mouser; what I ordered can be found in the `orders` folder
 
-## Current status
-Waiting for them to arrive; then I'll assemble them and test them
+## Assembly and testing
+
+This section covers how I assemble and test different boards
+
+### Buzzer Board
+I spread the solder paste onto the board, and placed the parts onto where they are supposed to go
+
+### Current status
+Parts have arrived; then I am currently assembling them and testing them
 
 Testing, board holders, and mechanical integration coming soon... 
