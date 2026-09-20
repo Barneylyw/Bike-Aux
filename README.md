@@ -53,7 +53,7 @@ Headlight requirements:
 - <3A current to avoid overheating
 According to the datasheet, [XMLBWT-00-0000-0000U3051](https://downloads.cree-led.com/files/ds/x/XLamp-XML2.pdf) (P.4) can achieve 628 lumens at 1.5A and 798 lumens at 2A (XMLBWT-00-0000-0000U4051 is brighter, but it is only sold in 1000s on Digi-Key)
 Therefore, XMLBWT-00-0000-0000U3051 is chosen to be the headlights
-###### Headlight Board
+#### Headlight Board
 --Specific Design Considerations--
 - heat dissipation via vias on the GND pad of the LED
 - aluminum PCB to maximize heat dissipation (as I am writing this, I realized I don't need heat dissipation vias as aluminum PCBs only have 1 layer, but I already ordered it)
@@ -70,7 +70,7 @@ Taillight requirements:
 
 I chose [JE2835AHR-N-0001A0000-N0000001](https://downloads.cree-led.com/files/ds/j/JSeries-2835-Color.pdf), thinking it was a red light with 130lm, but I didn't notice it refers to radiant flux instead of luminous flux.
 This will not work as intended with my current setup; I will integrate and test everything before changing the taillight setup.
-###### Taillight Board
+#### Taillight Board
 --Specific Design Considerations--
 - power port
 - mounting holes
@@ -95,7 +95,9 @@ This might be the most complex system in this project... many things can (and pr
 <p align="center"><img width="50%" alt="PDB" src="https://github.com/user-attachments/assets/2775d804-fbe9-40b7-a745-857b54bb4ca7" /></p>
 Image 7: rough visualization of what the power distribution board consists of, blue arrows indicates power input/output ports
 
-###### Voltage Regulator
+#### Voltage Regulator
+Thr original idea is to use an LDO as it is the simplist, but since the li-ion battery doesn't have constant voltage, it can only regulate when the V_batt is high enough, so I decided to use a switching regulator
+
 Voltage regulator requirement:
 - be able to supply 5V with 4A max
 I input my requirements into TI's Webench tool and it returned TPS61089 with this configuration is able to reach 5V 4A max
@@ -107,7 +109,7 @@ I then copied it to my schematic document in Altium
 </p>
 image 9: my schematic of TPS61089 without some of the input capacitors
 
-###### Front LED (Headlight) driver
+#### Front LED (Headlight) driver
 Front LED driver requirements:
 - be able to supply 2A, 3.5V(V_fled)
 - easy to use
@@ -117,12 +119,12 @@ Image 10: how LED2000 should be configured according to eDesignSuite
 <p align="center"><img width="50%" alt="Front driver in Altium" src="https://github.com/user-attachments/assets/f54594e3-7554-4be3-9c47-6388247863ac" /></p>
 image 11: my schematic of LED2000
 
-###### 1 Hz oscillator
+#### 1 Hz oscillator
 The original plan was to either use a 555timer or dividing a crystal signal, but then i found the [SIT1534AC-J5-DCC-00.001E](https://www.digikey.ca/en/products/detail/sitime/SIT1534AC-J5-DCC-00-001E/7793956) can produce a 1 Hz signal, so I opted for the easy solution as this is not the focus of this project and I don't need the timer to be 100% accurate, just ~1 Hz
 
 The footprint I downloaded from Ultra Librarian doesn't specificify which pin is which while the symbol does, so I guessed the layout, so it might not work as intended(i.e. the taillight won't blink)
 
-###### Rear LED (taillight) driver
+#### Rear LED (taillight) driver
 Rear LED driver requirements:
 - able to supply >250mA
 - consist of an enable pin
@@ -164,7 +166,7 @@ To determine Rs, I used the provided equation : I_led = 0.25A = 0.1/Rs -> 0.4Ω 
 <p align="center"><img width="50%" alt="Rear LED driver in Altium" src="https://github.com/user-attachments/assets/dde34d7a-1c5f-4211-b2c2-166e8cd96fb7" /></p>
 Image 12: schematic of the rear led driver with R9 = 0.4Ω to set the I_led = 0.25A
 
-###### Board layout
+#### Board layout
 requirements for TPS61089:
 - Minimize length and area connected to SW pin
 - Capacitors should be as close to their respectful pins as possible
@@ -255,9 +257,54 @@ They are ordered from JLCPCB, Digikey, and Mouser; what I ordered can be found i
 This section covers how I assemble and test different boards
 
 ### Buzzer Board
-I spread the solder paste onto the board, and placed the parts onto where they are supposed to go
+I spread the solder paste onto the board and placed the parts where they are supposed to go according to the design, and used hot-air reflow to solder everything in place.
+
+<p align="center"><img width="50%" alt="boards out of factory" src="https://github.com/user-attachments/assets/a6c05bde-4513-4d24-8a8e-98491a0361e0" /></p>
+Image 17: unassembled buzzer boards
+
+<p align="center"><img width="50%" alt="assembled buzzer board" src="https://github.com/user-attachments/assets/caaa8202-f1a3-4a8e-b1e6-37bbd19b7c1d" /></p>
+Image 18: buzzer board after I soldered the components and pins on it
+
+To test the functionality of the board, I used Analog Discovery 2's (AD2) `scope` and `source` functions to input 5V (output from the power distribution) and see if the output is 4kHz with the following connections:
+
+V+ -> input
+
+1+ -> output
+
+GND -> GND
+
+<p align="center"><img width="50%" alt="testing CKT" src="https://github.com/user-attachments/assets/713efbfe-24b1-4b67-a37b-c1df453ac9ab" /></p>
+Image 19: how the board is tested with AD2, showing all connections in and out of the board
+
+With this setup, the board can reach the desired frequency of 4kHz 
+
+<p align="center"><img width="50%" alt="Oscillator LTC4990 test" src="https://github.com/user-attachments/assets/4b24ebe6-cbe6-4dbd-bd57-86c39df09559" /></p>
+Image 20: test results in AD2's software, waveform, showing input = 5V (Ch1), oscillilating output at 4kHz (Ch2)
+
+Knowing the oscillator can reach 4kHz, I proceeded to connect the output to the buzzer to test if it is compatible with the buzzer. The buzzer made a loud, high-pitched noise that annoyed me, so I know it works
+
+I then connected the button in the middle to test the full buzzer system to see if it activates with a press of a button
+
+https://github.com/user-attachments/assets/9203218f-8cd7-4593-b8c7-8493a15fe9b1
+
+Video 1: me testing the buzzer system, showing the buzzer turns on when the button is pressed, the buzzer is facing down as it won't be as loud
+
+
+## Mechanical integration
+To 3D print mounting brackets with a single/two-piece split clamp design and board holders for the different components
+
+### Buzzer subsystem
+
+Button and buzzer holder to hold the compoents
+
+I printed V1 of both brackets and their holes are too big to be held tightly on the bike as shown in the pictures below
+
+
+<p align="left"><img width="50%" alt="buzzer holder" src="https://github.com/user-attachments/assets/f5962ec3-f752-44c6-b71d-00478d49daa7" />
+<p align="right"><img width="50%" alt="button holder" src="https://github.com/user-attachments/assets/1d3f20c6-3792-4b4a-b509-5c6ee7e02453" />
+image 21,22: holders with too big of a hole for the bike frame
 
 ### Current status
-Parts have arrived; then I am currently assembling them and testing them
+Parts have arrived; I am currently assembling and testing them while designing mechanical integration system
 
-Testing, board holders, and mechanical integration coming soon... 
+school is getting busy, ssslllooowww progress
