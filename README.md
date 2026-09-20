@@ -302,7 +302,8 @@ I printed V1 of both brackets and their holes are too big to be held tightly on 
 
 <p align="left"><img width="50%" alt="buzzer holder" src="https://github.com/user-attachments/assets/f5962ec3-f752-44c6-b71d-00478d49daa7" />
 <p align="right"><img width="50%" alt="button holder" src="https://github.com/user-attachments/assets/1d3f20c6-3792-4b4a-b509-5c6ee7e02453" />
-image 21,22: holders with too big of a hole for the bike frame
+
+ image 21,22: holders with too big of a hole for the bike frame
 
 ### Current status
 Parts have arrived; I am currently assembling and testing them while designing mechanical integration system
