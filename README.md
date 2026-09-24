@@ -287,13 +287,14 @@ I then connected the button in the middle to test the full buzzer system to see 
 
 https://github.com/user-attachments/assets/9203218f-8cd7-4593-b8c7-8493a15fe9b1
 
-Video 1: me testing the buzzer system, showing the buzzer turns on when the button is pressed, the buzzer is facing down as it won't be as loud
+Video 1: me testing the buzzer system, showing the buzzer turns on when the button is pressed; the buzzer is facing down as it won't be as loud
 
 ### Power Distribution
-Since there are many sub systems in the power distribution board, I decided to solder and test the board sub-system by sub-system, starting with voltage regulator
+Since there are many subsystems in the power distribution board, I decided to solder and test the board subsystem by subsystem, starting with the voltage regulator
 
 #### Voltage Regulator
-soldered everything onto the board, but V_out = 2V_in - something instead of 5V, not sure what is wrong. Despite this, since if Vin = 2.7V, V_out = ~5V, I will use that to test the rest of the sub-systems.
+Soldered the voltage regulator and its related components onto the board
+I used the AD2's `supply` function to supply a constant voltage from 2.7V to 4.2V, but somehow V_out = 2V_in - (something) instead of 5V, not sure what is wrong. Despite this, since if Vin = 2.7V, V_out = ~5V, I will use that to test the rest of the subsystems.
 
 
 ## Mechanical integration
@@ -301,7 +302,7 @@ To 3D print mounting brackets with a single/two-piece split clamp design and boa
 
 ### Buzzer subsystem
 
-Button and buzzer holder to hold the compoents
+Button and buzzer holder to hold the components
 
 I printed V1 of both brackets and their holes are too big to be held tightly on the bike as shown in the pictures below
 
