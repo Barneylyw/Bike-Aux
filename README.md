@@ -299,7 +299,7 @@ Soldered the voltage regulator and its related components onto the board
 
 I used the AD2's `supply` function to supply a constant voltage from 2.7V to 4.2V, but somehow V_out = 2V_in - (something) instead of 5V, not sure what is wrong. Despite this, since if Vin = 2.7V, V_out = ~5V, I will use that to test the rest of the subsystems.
 
-I realized I used a 680uF capacitor instead of a 680nF capacitor, so that might be the issue, but I can only buy multiples of 10,000s on digikey...
+I realized I used a 680uF capacitor instead of a 680nF capacitor, so that might be the issue
 
 ## Mechanical integration
 To 3D print mounting brackets with a single/two-piece split clamp design and board holders for the different components
