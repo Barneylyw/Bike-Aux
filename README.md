@@ -69,7 +69,7 @@ Taillight requirements:
 - 100lm (similar to an off-the-sheleve part)
 
 I chose [JE2835AHR-N-0001A0000-N0000001](https://downloads.cree-led.com/files/ds/j/JSeries-2835-Color.pdf), thinking it was a red light with 130lm, but I didn't notice it refers to radiant flux instead of luminous flux.
-This will not work as intended with my current setup; I will integrate and test everything before changing the taillight setup.
+This might not work as intended with my current setup.
 #### Taillight Board
 --Specific Design Considerations--
 - power port
@@ -123,6 +123,8 @@ image 11: my schematic of LED2000
 The original plan was to either use a 555timer or dividing a crystal signal, but then i found the [SIT1534AC-J5-DCC-00.001E](https://www.digikey.ca/en/products/detail/sitime/SIT1534AC-J5-DCC-00-001E/7793956) can produce a 1 Hz signal, so I opted for the easy solution as this is not the focus of this project and I don't need the timer to be 100% accurate, just ~1 Hz
 
 The footprint I downloaded from Ultra Librarian doesn't specificify which pin is which while the symbol does, so I guessed the layout, so it might not work as intended(i.e. the taillight won't blink)
+
+I have since realized that it is a crystal oscillator, which is an absolute overkill. I might go for the 555timer solution since I still don't know what the pin layout is
 
 #### Rear LED (taillight) driver
 Rear LED driver requirements:
@@ -301,12 +303,16 @@ I used the AD2's `supply` function to supply a constant voltage from 2.7V to 4.2
 
 I realized I used a 680uF capacitor instead of a 680nF capacitor, so that might be the issue
 
-#### Rear LED driver
-Since the Xtal oscillator isn't connected, I manually used a jumper wire to connect 5V to the EN pin to enable the driver
+#### Front LED driver
 
-I then connected the LED to the respective pins and turned on the power supply from AD2, LED lit up, it works! :)
+
+#### Rear LED driver
+Since the oscillator isn't connected, I manually used a jumper wire to connect 5V to the EN pin to enable the driver
+
+I then made sure the LED polarities are correct and connected the LED to the respective pins and turned on the power supply from AD2, LED lit up, it works! :)
 
 https://github.com/user-attachments/assets/d2f4da75-583c-456d-983e-1b7f2b622fab
+
 Video 2: testing the rear led, it lights up after I turn on the power from AD2 
 
 
@@ -330,6 +336,6 @@ I printed V1 of both brackets, and their holes are too big to be held tightly on
  image 21,22: holders with too big of a hole for the bike frame
 
 ### Current status
-Parts have arrived; I am currently assembling and testing them while designing mechanical integration system
+Parts have arrived; I am currently assembling and testing them while designing a mechanical integration system
 
 school is getting busy, ssslllooowww progress
