@@ -213,6 +213,7 @@ table 2: how wide should the trace be depending on the current with temperature 
 <p align="center"><img width="50%" alt="PDB" src="https://github.com/user-attachments/assets/a84dc339-ae24-42e3-88dc-4307fb76ea9f" /></p>
 image 13: final design of the PDB with all the design requirements followed as closely as possible. includes 1 input port, 3 output port, 1 test input port, mounting holes, and words to indicate what is what.
 
+Since the LED 2000 requires an AGND and PWG GND, but I don't know how they should be connected to the rest of the grounds, I separated them from circuit ground, which might be a bad design decision...
 
 ### Charger Board
 Charger board requirements:
@@ -305,6 +306,12 @@ I realized I used a 680uF capacitor instead of a 680nF capacitor, so that might 
 
 #### Front LED driver
 
+I first checked the polarities on the LED, then connected it to the board
+
+Nothing is working, so I multi-metered and used the `scope` in AD2 for the pins on the LED2000 and found:
+- LED+ and LED- pins are both outputting ~4.7V
+- all the grounds (AGND & PWG GND) are ~4.6V
+which leads me to think it's because my grounds are not connected to circuit ground because I didn't know what to do with the grounds, so I separated them from circuit ground
 
 #### Rear LED driver
 Since the oscillator isn't connected, I manually used a jumper wire to connect 5V to the EN pin to enable the driver
