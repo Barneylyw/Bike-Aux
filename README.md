@@ -301,6 +301,15 @@ I used the AD2's `supply` function to supply a constant voltage from 2.7V to 4.2
 
 I realized I used a 680uF capacitor instead of a 680nF capacitor, so that might be the issue
 
+#### Rear LED driver
+Since the Xtal oscillator isn't connected, I manually used a jumper wire to connect 5V to the EN pin to enable the driver
+
+I then connected the LED to the respective pins and turned on the power supply from AD2, LED lit up, it works! :)
+
+https://github.com/user-attachments/assets/d2f4da75-583c-456d-983e-1b7f2b622fab
+Video 2: testing the rear led, it lights up after I turn on the power from AD2 
+
+
 ## Mechanical integration
 To 3D print mounting brackets with a single/two-piece split clamp design and board holders for the different components
 
