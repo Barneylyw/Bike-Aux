@@ -323,9 +323,6 @@ https://github.com/user-attachments/assets/d2f4da75-583c-456d-983e-1b7f2b622fab
 Video 2: testing the rear led, it lights up after I turn on the power from AD2 
 
 
-## Mechanical integration
-To 3D print mounting brackets with a single/two-piece split clamp design and board holders for the different components
-
 ### Buzzer subsystem
 
 Button and buzzer holder to hold the components
@@ -341,6 +338,24 @@ I printed V1 of both brackets, and their holes are too big to be held tightly on
 
 
  image 21,22: holders with too big of a hole for the bike frame
+
+### BMS circuit testing
+Since I used the same BMS circuit for my power distribution and charger board, I am only testing the circuit on the PD board
+
+The plan: 
+1. Use AD2 as my 'battery' (so that I don't blow up my actual Li-ion battery and have my landlord on my rear end)
+2. Use the ammeter to connect Pack+ and GND with a series resistor (10Ω) to see if the current is conducting
+3. Change the voltage input setting on AD2 from <2.8V-4.2V and see if it shuts off (no ammeter reading) when it's lower than 2.8V
+
+I tested the circuit according to my plan, but it was only conducting ~4 mA, which does not make sense with Vin = ~3.5 V and a 10Ω resistor (should be getting ~280 mA)
+
+I realized my GND on the PCB isn't the same GND as the 'battery' (AD2), so after I connected PCB GND to AD2 GND, I got a reading of ~270 mA when Vin = 3.7 V
+
+However, when I decrease the voltage down to <2.8 V, the current kept decreasing instead of becoming an open circuit and current = 0mA. I have no idea what is going on; I am calling it a day for now
+
+## Mechanical integration
+To 3D print mounting brackets with a single/two-piece split clamp design and board holders for the different components
+
 
 ### Current status
 Parts have arrived; I am currently assembling and testing them while designing a mechanical integration system
