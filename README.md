@@ -259,6 +259,8 @@ They are ordered from JLCPCB, Digikey, and Mouser; what I ordered can be found i
 
 This section covers how I assemble and test different boards
 
+Note: I am documenting my testing day of (or a few days) after I conducted the tests, so from here on it will be more of a log than anything. I apologize for the causal wording.
+
 ### Buzzer Board
 I spread the solder paste onto the board and placed the parts where they are supposed to go according to the design, and used hot-air reflow to solder everything in place.
 
