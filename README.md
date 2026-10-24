@@ -342,6 +342,7 @@ I printed V1 of both brackets, and their holes are too big to be held tightly on
  image 21,22: holders with too big of a hole for the bike frame
 
 ### BMS circuit testing
+Oct 19 start
 Since I used the same BMS circuit for my power distribution and charger board, I am only testing the circuit on the PD board
 
 The plan: 
@@ -353,7 +354,27 @@ I tested the circuit according to my plan, but it was only conducting ~4 mA, whi
 
 I realized my GND on the PCB isn't the same GND as the 'battery' (AD2), so after I connected PCB GND to AD2 GND, I got a reading of ~270 mA when Vin = 3.7 V
 
-However, when I decrease the voltage down to <2.8 V, the current kept decreasing instead of becoming an open circuit and current = 0mA. I have no idea what is going on; I am calling it a day for now
+However, when I decrease the voltage down to <2.8 V, the current kept decreasing instead of becoming an open circuit and current = 0mA. I have no idea what is going on; I am calling it a day for now (Oct 19 end)
+
+Oct 21 start
+Barely any time to work on it today
+
+I decided to test the Drain pin that is common with the FET that is connected to C_out. However, I don't have a test point there, so I scraped off the solder mask to test the drain pin.
+
+Verified D_out goes low when V_Batt+ < 2.8V, so the IC is working :)
+
+(end of Oct 21)
+
+Oct 23 start
+New evening, new brain
+
+Decided to check the FET.  V_drain = 1.1V when V_Batt+ = 2.5V
+
+I then tried to test continuity between source (Batt-) and drain (PCB GND) with an ammeter;  it reads ~9 µA @ V_Batt+ = 2.5V (good news?) but = -0.3 μA @ V_Batt+ = 3.5 V (basically nothing... not good...)
+
+Here is the question: does V_drain being at a different voltage than V_batt- prove its discontinuity, and why is I_SD -0.3 μA @ V_Batt+ = 3.5 V? 
+
+Maybe my new evening brain isn't working that well... (end of Oct 23)
 
 ## Mechanical integration
 To 3D print mounting brackets with a single/two-piece split clamp design and board holders for the different components
