@@ -1,6 +1,9 @@
 
 # Bike Auxiliary System
 
+
+
+
 To power a buzzer, head lights, and tail lights with one (or more) rechargeable Li-ion battery.
  
 <p align="center"><img width="50%" alt="bike aux" src="https://github.com/user-attachments/assets/766c6112-1625-423f-9183-f2460c320e6b" /></p>
@@ -13,6 +16,27 @@ Where the buzzer will act as a bell which will be activated by a button. The hea
 - ICs should be as cheap as possible
 
 (All blue texts are links to component datasheet)
+
+## Project Status
+
+| Board            | Designed | Ordered | Soldered | Tested | Working | Notes                          |
+|-------------------|:--------:|:-------:|:--------:|:------:|:-------:|---------------------------------|
+| Buzzer Board       | ✅ | ✅ | ✅ | ✅ | ✅ | Fully working                   |
+| Power Dist. Board  | ✅ | ✅ | 🟡 | 🟡 | 🟡 | Oscillator unsoldered, see issues |
+| Charger Board      | ✅ | ✅ | ⬜ | ⬜ | ⬜ |                                  |
+| Headlight Board    | ✅ | ✅ | ✅ | ✅ | ⬜ |                                  |
+| Taillight Board    | ✅ | ✅ | ✅ | ✅ | ✅ |                                  |
+
+Legend: ✅ done · 🟡 in progress / partial · ⬜ not started
+
+## Known Issues
+
+| # | Board          | Symptom                                      | Hypothesis                                  | Potential Solution |
+|---|----------------|-----------------------------------------------|----------------------------------------------|--------|
+| 1 | PDB            | Vout = 2·Vin instead of 5V                    | Used 680µF cap instead of 680nF              | uhhh, change the cap?   |
+| 2 | PDB (LED2000)  | LED+/LED- and all GND read ~4.6–4.7V          | AGND/PWR GND isolated from circuit GND        | connect AGND&PGND to ckt gnd via resistors   |
+| 3 | PDB (BMS)      | Current doesn't drop to 0 below 2.8V UVP      | Unknown — needs further probing               | no clue   |
+| 4 | PDB (osc.)     | Pin layout on SIT1534 guessed, unverified     | Footprint from Ultra Librarian lacked pinout  | use a 555 timer (apperently they are not dead, there is a CMOS version)   | 
 
 ### Buzzer Sub-system
 
@@ -354,7 +378,7 @@ I tested the circuit according to my plan, but it was only conducting ~4 mA, whi
 
 I realized my GND on the PCB isn't the same GND as the 'battery' (AD2), so after I connected PCB GND to AD2 GND, I got a reading of ~270 mA when Vin = 3.7 V
 
-However, when I decrease the voltage down to <2.8 V, the current kept decreasing instead of becoming an open circuit and current = 0mA. I have no idea what is going on; I am calling it a day for now (Oct 19 end)
+However, when I decrease the voltage down to <2.8 V, the current kept decreasing almost linearly instead of becoming an open circuit and current = 0mA. I have no idea what is going on; I am calling it a day for now (Oct 19 end)
 
 Oct 21 start
 Barely any time to work on it today
@@ -376,11 +400,27 @@ Here is the question: does V_drain being at a different voltage than V_batt- pro
 
 Maybe my new evening brain isn't working that well... (end of Oct 23)
 
+Oct 26
+
+Answer to my previous question: No, it can just be a resistance; no clue why I_SD is so low.
+
+I made an LTspice simulation around the FET just to make sure I'm not going crazy, and then I probed PCB GND and measured the current from a dummy load (100Ω)
+
+<img width="50%" alt="BMS FET testingr" src="https://github.com/user-attachments/assets/9da83cfc-7411-4c98-9f7c-efebc3ae6a27" />
+
+From the simulation, I know what I'm supposed to get, but I don't think I'm getting any of the expected results
+
+I'll call this unsuccessful and have to redesign (at least add more test points)
+
 ## Mechanical integration
 To 3D print mounting brackets with a single/two-piece split clamp design and board holders for the different components
 
 
 ### Current status
 Parts have arrived; I am currently assembling and testing them while designing a mechanical integration system
+
+# Changes for V2
+many
+
 
 school is getting busy, ssslllooowww progress
