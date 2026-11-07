@@ -36,7 +36,7 @@ Legend: ✅ done · 🟡 in progress / partial · ⬜ not started
 | 1 | PDB            | Vout = 2·Vin instead of 5V                    | Used 680µF cap instead of 680nF              | uhhh, change the cap?   |
 | 2 | PDB (LED2000)  | LED+/LED- and all GND read ~4.6–4.7V          | AGND/PWR GND isolated from circuit GND        | connect AGND&PGND to ckt gnd via resistors   |
 | 3 | PDB (BMS)      | Current doesn't drop to 0 below 2.8V UVP      | Unknown — needs further probing               | no clue   |
-| 4 | PDB (osc.)     | Pin layout on SIT1534 guessed, unverified     | Footprint from Ultra Librarian lacked pinout  | use a 555 timer (apperently they are not dead, there is a CMOS version)   | 
+| 4 | PDB (osc.)     | Pin layout on SIT1534 guessed, unverified     | Footprint from Ultra Librarian doesn't hav pinout  (Don't know why i still used this one| use a 555 timer (apperently they are not dead, there is a CMOS version)   | 
 
 ### Buzzer Sub-system
 
