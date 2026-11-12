@@ -348,23 +348,6 @@ https://github.com/user-attachments/assets/d2f4da75-583c-456d-983e-1b7f2b622fab
 
 Video 2: testing the rear led, it lights up after I turn on the power from AD2 
 
-
-### Buzzer subsystem
-
-Button and buzzer holder to hold the components
-
-I printed V1 of both brackets, and their holes are too big to be held tightly on the bike as shown in the pictures below
-
-<table>
- <tr>
-  <td><img width="40%" alt="buzzer holder" src="https://github.com/user-attachments/assets/f5962ec3-f752-44c6-b71d-00478d49daa7" /></td>
-  <td><img width="40%" alt="button holder" src="https://github.com/user-attachments/assets/1d3f20c6-3792-4b4a-b509-5c6ee7e02453" /></td>
- </tr>
-</table>
-
-
- image 21,22: holders with too big of a hole for the bike frame
-
 ### BMS circuit testing
 Oct 19 start
 Since I used the same BMS circuit for my power distribution and charger board, I am only testing the circuit on the PD board
@@ -415,6 +398,21 @@ I'll call this unsuccessful and have to redesign (at least add more test points)
 ## Mechanical integration
 To 3D print mounting brackets with a single/two-piece split clamp design and board holders for the different components
 
+### Buzzer subsystem
+
+Button and buzzer holder to hold the components
+
+I printed V1 of both brackets, and their holes are too big to be held tightly on the bike as shown in the pictures below
+
+<table>
+ <tr>
+  <td><img width="40%" alt="buzzer holder" src="https://github.com/user-attachments/assets/f5962ec3-f752-44c6-b71d-00478d49daa7" /></td>
+  <td><img width="40%" alt="button holder" src="https://github.com/user-attachments/assets/1d3f20c6-3792-4b4a-b509-5c6ee7e02453" /></td>
+ </tr>
+</table>
+
+
+ image 21,22: holders with too big of a hole for the bike frame
 
 ### Current status
 Parts have arrived; I am currently assembling and testing them while designing a mechanical integration system
