@@ -361,12 +361,12 @@ I tested the circuit according to my plan, but it was only conducting ~4 mA, whi
 
 I realized my GND on the PCB isn't the same GND as the 'battery' (AD2), so after I connected PCB GND to AD2 GND, I got a reading of ~270 mA when Vin = 3.7 V
 
-However, when I decrease the voltage down to <2.8 V, the current kept decreasing almost linearly instead of becoming an open circuit and current = 0mA. I have no idea what is going on; I am calling it a day for now (Oct 19 end)
+However, when I decreased the voltage to <2.8 V, the current kept decreasing almost linearly instead of opening the circuit and dropping to 0 mA. I have no idea what is going on; I am calling it a day for now (Oct 19 end)
 
 Oct 21 start
 Barely any time to work on it today
 
-I decided to test the Drain pin that is common with the FET that is connected to C_out. However, I don't have a test point there, so I scraped off the solder mask to test the drain pin.
+I decided to test the common Drain pin across the two FETs. However, I don't have a test point there, so I scraped off the solder mask to test the drain pin.
 
 Verified D_out goes low when V_Batt+ < 2.8V, so the IC is working :)
 
@@ -391,7 +391,7 @@ I made an LTspice simulation around the FET just to make sure I'm not going craz
 
 <img width="50%" alt="BMS FET testingr" src="https://github.com/user-attachments/assets/9da83cfc-7411-4c98-9f7c-efebc3ae6a27" />
 
-From the simulation, I know what I'm supposed to get, but I don't think I'm getting any of the expected results
+From the simulation, I know what I'm supposed to get, but I'm not getting any of the expected results from the same tests
 
 I'll call this unsuccessful and have to redesign (at least add more test points)
 
