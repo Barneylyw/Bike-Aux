@@ -337,7 +337,9 @@ I first checked the polarities on the LED, then connected it to the board
 Nothing is working, so I multi-metered and used the `scope` in AD2 for the pins on the LED2000 and found:
 - LED+ and LED- pins are both outputting ~4.7V
 - all the grounds (AGND & PWG GND) are ~4.6V
-which leads me to think it's because my grounds are not connected to circuit ground because I didn't know what to do with the grounds, so I separated them from circuit ground
+which leads me to think it's because my grounds are not connected to circuit ground. This is because when I was designing it, I didn't know what to do with the grounds, so I separated them from circuit ground
+
+I soldered a 3.6Ω resistor to bridge the PCB GND to the PWR GND, and now LED+ is at ~4.8V while LED- is 0V. It should work in theory, but I don't have a power supply other than the AD2, so I cannot verify if it can deliver 2A.
 
 #### Rear LED driver
 Since the oscillator isn't connected, I manually used a jumper wire to connect 5V to the EN pin to enable the driver
