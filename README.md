@@ -351,41 +351,32 @@ https://github.com/user-attachments/assets/d2f4da75-583c-456d-983e-1b7f2b622fab
 Video 2: testing the rear led, it lights up after I turn on the power from AD2 
 
 ### BMS circuit testing
-Oct 19 start
 Since I used the same BMS circuit for my power distribution and charger board, I am only testing the circuit on the PD board
 
 The plan: 
 1. Use AD2 as my 'battery' (so that I don't blow up my actual Li-ion battery and have my landlord on my rear end)
-2. Use the ammeter to connect Pack+ and GND with a series resistor (10Ω) to see if the current is conducting
+2. Use the ammeter (in current mode) to connect Pack+ and GND with a series resistor (10Ω) to see if current is flowing
 3. Change the voltage input setting on AD2 from <2.8V-4.2V and see if it shuts off (no ammeter reading) when it's lower than 2.8V
 
 I tested the circuit according to my plan, but it was only conducting ~4 mA, which does not make sense with Vin = ~3.5 V and a 10Ω resistor (should be getting ~280 mA)
 
 I realized my GND on the PCB isn't the same GND as the 'battery' (AD2), so after I connected PCB GND to AD2 GND, I got a reading of ~270 mA when Vin = 3.7 V
 
-However, when I decreased the voltage to <2.8 V, the current kept decreasing almost linearly instead of opening the circuit and dropping to 0 mA. I have no idea what is going on; I am calling it a day for now (Oct 19 end)
+However, when I decreased the voltage to <2.8 V, the current kept decreasing almost linearly instead of opening the circuit and dropping to 0 mA. I have no idea what is going on; I am calling it a day for now
 
-Oct 21 start
-Barely any time to work on it today
-
-I decided to test the common Drain pin across the two FETs. However, I don't have a test point there, so I scraped off the solder mask to test the drain pin.
+Next, I decided to test the common Drain pin across the two FETs. However, I don't have a test point there, so I scraped off the solder mask to test the drain pin. (Probing without a test point is a pain)
 
 Verified D_out goes low when V_Batt+ < 2.8V, so the IC is working :)
 
-(end of Oct 21)
-
-Oct 23 start
 New evening, new brain
 
-Decided to check the FET.  V_drain = 1.1V when V_Batt+ = 2.5V
+I decided to check the FET.  V_drain = 1.1V when V_Batt+ = 2.5V
 
 I then tried to test continuity between source (Batt-) and drain (PCB GND) with an ammeter;  it reads ~9 µA @ V_Batt+ = 2.5V (good news?) but = -0.3 μA @ V_Batt+ = 3.5 V (basically nothing... not good...)
 
 Here is the question: does V_drain being at a different voltage than V_batt- prove its discontinuity, and why is I_SD -0.3 μA @ V_Batt+ = 3.5 V? 
 
-Maybe my new evening brain isn't working that well... (end of Oct 23)
-
-Oct 26
+Maybe my new evening brain isn't working that well... 
 
 Answer to my previous question: No, it can just be a resistance; no clue why I_SD is so low.
 
@@ -394,6 +385,14 @@ I made an LTspice simulation around the FET just to make sure I'm not going craz
 <img width="50%" alt="BMS FET testingr" src="https://github.com/user-attachments/assets/9da83cfc-7411-4c98-9f7c-efebc3ae6a27" />
 
 From the simulation, I know what I'm supposed to get, but I'm not getting any of the expected results from the same tests
+
+## Test Results
+
+| Test / Parameter      | Expected Results       | My Results            | Status |
+|------------------------|------------------------|------------------------|----------------|
+| Continuity from D to S    | non-zero current at V_Batt+ = 3.5V    | -0.3 μA   @ 3.5V           | not good|
+| Voltage at PCB GND | 0 @ V_Batt+ > 2.7V / non-zero  @ V_Batt+ < 2.7V           | 1.1V  @ V_Batt+ < 2.7V               |  OK|
+| BMS UVP cutoff    | 0 mA @  V_Batt+ < 2.7 V       | current didn't drop to 0 |  not good|
 
 I'll call this unsuccessful and have to redesign (at least add more test points)
 
