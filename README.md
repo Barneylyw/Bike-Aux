@@ -360,10 +360,6 @@ The plan:
 
 I tested the circuit according to my plan, but it was only conducting ~4 mA, which does not make sense with Vin = ~3.5 V and a 10Ω resistor (should be getting ~280 mA)
 
-I realized my GND on the PCB isn't the same GND as the 'battery' (AD2), so after I connected PCB GND to AD2 GND, I got a reading of ~270 mA when Vin = 3.7 V
-
-However, when I decreased the voltage to <2.8 V, the current kept decreasing almost linearly instead of opening the circuit and dropping to 0 mA. I have no idea what is going on; I am calling it a day for now
-
 Next, I decided to test the common Drain pin across the two FETs. However, I don't have a test point there, so I scraped off the solder mask to test the drain pin. (Probing without a test point is a pain)
 
 Verified D_out goes low when V_Batt+ < 2.8V, so the IC is working :)
